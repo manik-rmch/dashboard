@@ -5,94 +5,211 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RMCH Management Dashboard</title>
     <style>
-        * { box-sizing: border-box; margin: 0px; padding: 0px; font-family: SolaimanLipi, Kalpurush, Arial, sans-serif; }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: SolaimanLipi, Kalpurush, Arial, sans-serif; }
 
-        body { background-color: rgb(244, 247, 246); color: rgb(51, 51, 51); display: flex; flex-direction: column; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+        body { 
+            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
+            color: #333; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+        }
 
-        .dashboard-card { background: rgb(255, 255, 255); padding: 30px 20px; border-radius: 12px; box-shadow: rgba(0, 0, 0, 0.08) 0px 8px 24px; width: 100%; max-width: 480px; text-align: center; }
+        /* প্রধান ড্যাশবোর্ড কার্ড */
+        .dashboard-card { 
+            background: #ffffff; 
+            padding: 35px 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); 
+            width: 100%; 
+            max-width: 1100px; /* ডেস্কটপে চওড়া লেআউট */
+        }
 
-        h1 { font-size: 22px; color: rgb(26, 37, 47); margin-bottom: 8px; }
+        /* ডেস্কটপের জন্য কন্টেইনার গ্রিড */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
 
-        p.subtitle { font-size: 14px; color: rgb(102, 102, 102); margin-bottom: 15px; }
+        /* হেডার স্টাইল */
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 26px; color: #1a252f; margin-bottom: 6px; }
+        p.subtitle { font-size: 15px; color: #666; }
 
         /* তারিখ প্রদর্শন স্টাইল */
-        .date-display-box { background: #eef2f7; padding: 12px; border-radius: 8px; margin-bottom: 20px; border: 1px solid #dcdfe6; line-height: 1.5; }
-        .date-display-box .date-text { font-size: 14px; font-weight: bold; color: #2c3e50; }
+        .date-display-box { 
+            background: #eef2f7; 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            border: 1px solid #dcdfe6; 
+            text-align: center;
+            line-height: 1.5; 
+        }
+        .date-display-box .date-text { font-size: 15px; font-weight: bold; color: #2c3e50; }
 
         /* সরকারি ছুটির উইজেট স্টাইল */
-        .govt-card { background: #fff; padding: 15px; border-radius: 10px; border-left: 5px solid #27ae60; box-shadow: 0 2px 8px rgba(0,0,0,0.08); font-family: sans-serif; text-align: left; margin-bottom: 25px; border-top: 1px solid #eee; border-right: 1px solid #eee; border-bottom: 1px solid #eee; }
-        .govt-card h3 { font-size: 15px; color: #16a085; margin-bottom: 8px; }
-        .holiday-name { font-size: 16px; font-weight: bold; color: #2c3e50; }
-        .holiday-date { color: #7f8c8d; font-size: 13.5px; margin-top: 4px; }
+        .govt-card { 
+            background: #fff; 
+            padding: 18px; 
+            border-radius: 12px; 
+            border-left: 6px solid #27ae60; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            text-align: left; 
+            margin-bottom: 20px; 
+            border-top: 1px solid #f0f0f0; 
+            border-right: 1px solid #f0f0f0; 
+            border-bottom: 1px solid #f0f0f0; 
+        }
+        .govt-card h3 { font-size: 16px; color: #16a085; margin-bottom: 8px; }
+        .holiday-name { font-size: 17px; font-weight: bold; color: #2c3e50; }
+        .holiday-date { color: #7f8c8d; font-size: 14px; margin-top: 4px; }
         .holiday-note { font-size: 11px; color: #e74c3c; margin-top: 8px; border-top: 1px dashed #ddd; padding-top: 5px; }
 
         /* বাটন গ্রিড স্টাইল */
-        .button-grid { display: flex; flex-direction: column; gap: 15px; margin-bottom: 25px; }
+        .button-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 15px; 
+        }
 
-        .dash-btn { display: flex; align-items: center; justify-content: flex-start; gap: 12px; padding: 16px 14px; border-radius: 8px; text-decoration: none; color: rgb(255, 255, 255); font-size: 15px; font-weight: bold; transition: 0.3s; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px; white-space: nowrap; }
+        .dash-btn { 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 15px; 
+            padding: 20px 18px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
 
-        .dash-btn:hover { transform: translateY(-2px); box-shadow: rgba(0, 0, 0, 0.15) 0px 6px 12px; }
+        .dash-btn:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); 
+        }
 
-        .btn-overtime { background: linear-gradient(135deg, rgb(0, 140, 186), rgb(0, 95, 115)); }
-        .btn-salary { background: linear-gradient(135deg, rgb(46, 125, 50), rgb(27, 94, 32)); }
-        .btn-leave { background: linear-gradient(135deg, rgb(211, 84, 0), rgb(160, 64, 0)); }
-        .btn-age { background: linear-gradient(135deg, rgb(124, 58, 237), rgb(79, 70, 229)); }
+        .btn-overtime { background: linear-gradient(135deg, #008cba, #005f73); }
+        .btn-salary { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+        .btn-leave { background: linear-gradient(135deg, #d35400, #a04000); }
+        .btn-age { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
 
-        .icon { font-size: 20px; background: rgba(255, 255, 255, 0.2); padding: 6px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; flex-shrink: 0; }
+        .icon { 
+            font-size: 22px; 
+            background: rgba(255, 255, 255, 0.2); 
+            padding: 8px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 44px; 
+            height: 44px; 
+            flex-shrink: 0; 
+        }
 
-        .author-box { background-color: rgb(240, 247, 255); border: 1px dashed rgb(0, 140, 186); border-radius: 8px; padding: 15px; font-size: 13.5px; color: rgb(26, 37, 47); line-height: 1.6; }
-        .author-box strong { color: rgb(0, 95, 115); }
+        .author-box { 
+            background-color: #f0f7ff; 
+            border: 1px dashed #008cba; 
+            border-radius: 10px; 
+            padding: 18px; 
+            font-size: 14px; 
+            color: #1a252f; 
+            line-height: 1.6; 
+            text-align: center;
+        }
+        .author-box strong { color: #005f73; }
+
+        /* 💻 ডেস্কটপ ও ল্যাপটপ ভিউয়ের জন্য রেসপন্সিভ গ্রিড (৭৬৮ পিক্সেলের ওপরে) */
+        @media (min-width: 768px) {
+            .header-section {
+                grid-column: span 2;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr 1fr; /* বাটনগুলো ২ কলামে সাজাবে */
+                gap: 20px;
+            }
+
+            .dash-btn {
+                padding: 25px 20px; /* ডেস্কটপে বড় ও স্টাইলিশ বাটন */
+                font-size: 17px;
+            }
+
+            .author-box {
+                grid-column: span 2;
+                margin-top: 10px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <div class="dashboard-card">
-        <h1>রাজশাহী মেডিকেল কলেজ হাসপাতাল</h1>
-        <p class="subtitle">ড্রাইভার সেকশন ম্যানেজমেন্ট ড্যাশবোর্ড</p>
-
-        <!-- ইংরেজি ও বাংলা বঙ্গাব্দ তারিখ সেকশন -->
-        <div class="date-display-box">
-            <div class="date-text" id="current-date-display">আজকের তারিখ লোড হচ্ছে...</div>
+        <div class="header-section">
+            <h1>রাজশাহী মেডিকেল কলেজ হাসপাতাল</h1>
+            <p class="subtitle">ড্রাইভার সেকশন ম্যানেজমেন্ট ড্যাশবোর্ড</p>
         </div>
 
-        <!-- সরকারি ছুটি উইজেট -->
-        <div class="govt-card">
-            <h3>📌 পরবর্তী সরকারি ছুটি</h3>
-            <div id="holiday-info">লোডিং...</div>
-            <div class="holiday-note">* ধর্মীয় ছুটি চাঁদ দেখা বা পঞ্জিকার ওপর নির্ভর করে পরিবর্তিত হতে পারে।</div>
-        </div>
+        <div class="dashboard-grid">
+            <!-- বাম পাশের কলাম: তারিখ ও ছুটির তথ্য -->
+            <div class="left-panel">
+                <div class="date-display-box">
+                    <div class="date-text" id="current-date-display">আজকের তারিখ লোড হচ্ছে...</div>
+                </div>
 
-        <div class="button-grid">
-            <!-- ওভারটাইম বিল অপশন -->
-            <a href="https://manik-rmch.github.io/overtime-bill/" class="dash-btn btn-overtime">
-                <span class="icon">📝</span>
-                <span>ওভারটাইম বিল তৈরি</span>
-            </a>
+                <div class="govt-card">
+                    <h3>📌 পরবর্তী সরকারি ছুটি</h3>
+                    <div id="holiday-info">লোডিং...</div>
+                    <div class="holiday-note">* ধর্মীয় ছুটি চাঁদ দেখা বা পঞ্জিকার ওপর নির্ভর করে পরিবর্তিত হতে পারে।</div>
+                </div>
+            </div>
 
-            <!-- স্যালারি ক্যালকুলেশন অপশন -->
-            <a href="https://manik-rmch.github.io/salary-calculator/" class="dash-btn btn-salary">
-                <span class="icon">💰</span>
-                <span>স্যালারি ক্যালকুলেটর</span>
-            </a>
+            <!-- ডান পাশের কলাম: বাটন গ্রিড -->
+            <div class="right-panel">
+                <div class="button-grid">
+                    <a href="https://manik-rmch.github.io/overtime-bill/" class="dash-btn btn-overtime">
+                        <span class="icon">📝</span>
+                        <span>ওভারটাইম বিল তৈরি</span>
+                    </a>
 
-            <!-- অর্জিত ছুটি ক্যালকুলেটর অপশন -->
-            <a href="https://manik-rmch.github.io/leave-calculator" class="dash-btn btn-leave">
-                <span class="icon">🏖️</span>
-                <span>অর্জিত ছুটি ক্যালকুলেটর</span>
-            </a>
+                    <a href="https://manik-rmch.github.io/salary-calculator/" class="dash-btn btn-salary">
+                        <span class="icon">💰</span>
+                        <span>স্যালারি ক্যালকুলেটর</span>
+                    </a>
 
-            <!-- বয়স ও ডেট-টাইম ক্যালকুলেটর অপশন -->
-            <a href="https://manik-rmch.github.io/age-calculator/" class="dash-btn btn-age">
-                <span class="icon">📅</span>
-                <span>বয়স ও ডেট-টাইম ক্যালকুলেটর</span>
-            </a>
-        </div>
+                    <a href="https://manik-rmch.github.io/leave-calculator" class="dash-btn btn-leave">
+                        <span class="icon">🏖️</span>
+                        <span>অর্জিত ছুটি ক্যালকুলেটর</span>
+                    </a>
 
-        <!-- প্রস্তুতকারক তথ্য -->
-        <div class="author-box">
-            <strong>প্রস্তুতকারক:</strong> মোঃ মানিক<br>
-            গাড়ি চালক, রাজশাহী মেডিকেল কলেজ হাসপাতাল, রাজশাহী।<br>
-            <strong>মোবাইল:</strong> ০১৭২৯-৮১৫২৯১
+                    <a href="https://manik-rmch.github.io/age-calculator/" class="dash-btn btn-age">
+                        <span class="icon">📅</span>
+                        <span>বয়স ও ডেট-টাইম ক্যালকুলেটর</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- প্রস্তুতকারক তথ্য -->
+            <div class="author-box">
+                <strong>প্রস্তুতকারক:</strong> মোঃ মানিক<br>
+                গাড়ি চালক, রাজশাহী মেডিকেল কলেজ হাসপাতাল, রাজশাহী।<br>
+                <strong>মোবাইল:</strong> ০১৭২৯-৮১৫২৯১
+            </div>
         </div>
     </div>
 
@@ -143,11 +260,9 @@
     const dateInBn = now.toLocaleDateString('bn-BD', optionsBn);
     const banglaDateStr = getBanglaDate(now);
 
-    document.getElementById('current-date-display').innerHTML = `📅 আজ: ${dateInBn}<br><span style="color: #27ae60; font-size: 13.5px;">(${banglaDateStr})</span>`;
+    document.getElementById('current-date-display').innerHTML = `📅 আজ: ${dateInBn}<br><span style="color: #27ae60; font-size: 14px;">(${banglaDateStr})</span>`;
 
-    // প্রদানকৃত হালনাগাদ তথ্যানুসারে ছুটির তালিকা (২০২৬ - ২০২৭)
     const holidays = [
-        // ২০২৬ সালের ছুটি
         { name: "শবে বরাত", startDate: "2026-02-04", endDate: "2026-02-04", displayDate: "০৪/০২/২০২৬" },
         { name: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", startDate: "2026-02-21", endDate: "2026-02-21", displayDate: "২১/০২/২০২৬" },
         { name: "শবে কদর", startDate: "2026-03-17", endDate: "2026-03-17", displayDate: "১৭/০৩/২০২৬" },
@@ -164,7 +279,6 @@
         { name: "বিজয় দিবস", startDate: "2026-12-16", endDate: "2026-12-16", displayDate: "১৬/১২/২০২৬" },
         { name: "যীশুর জন্মোৎসব (বড়দিন)", startDate: "2026-12-25", endDate: "2026-12-25", displayDate: "২৫/১২/২০২৬" },
 
-        // ২০২৭ সালের ছুটি
         { name: "শবে বরাত", startDate: "2027-01-24", endDate: "2027-01-24", displayDate: "২৪/০১/২০২৭" },
         { name: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", startDate: "2027-02-21", endDate: "2027-02-21", displayDate: "২১/০২/২০২৭" },
         { name: "শবে কদর", startDate: "2027-03-06", endDate: "2027-03-06", displayDate: "০৬/০৩/২০২৭" },
@@ -184,8 +298,6 @@
     ];
 
     const todayStr = now.toISOString().split('T')[0];
-    
-    // ছুটির সময়সীমার শেষ দিন পার হওয়া পর্যন্ত পরবর্তী ছুটি নির্ধারণ
     const nextHoliday = holidays.find(h => h.endDate >= todayStr) || holidays[holidays.length - 1];
 
     document.getElementById('holiday-info').innerHTML = `
