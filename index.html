@@ -1,68 +1,166 @@
-<!DOCTYPE html><html lang="bn"><head><meta charset="UTF-8"><style>
-* { box-sizing: border-box; margin: 0px; padding: 0px; font-family: SolaimanLipi, Kalpurush, Arial, sans-serif; }
-
-body { background: linear-gradient(135deg, rgb(238, 242, 243) 0%, rgb(142, 158, 171) 100%); color: rgb(51, 51, 51); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
-
-.dashboard-card { background: rgb(255, 255, 255); padding: 35px 30px; border-radius: 16px; box-shadow: rgba(0, 0, 0, 0.12) 0px 10px 30px; width: 100%; max-width: 1100px; }
-
-.dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 25px; }
-
-.header-section { text-align: center; margin-bottom: 20px; }
-
-h1 { font-size: 26px; color: rgb(26, 37, 47); margin-bottom: 6px; }
-
-p.subtitle { font-size: 15px; color: rgb(102, 102, 102); }
-
-.date-display-box { background: rgb(238, 242, 247); padding: 12px; border-radius: 10px; margin-bottom: 20px; border: 1px solid rgb(220, 223, 230); text-align: center; line-height: 1.5; }
-
-.date-display-box .date-text { font-size: 15px; font-weight: bold; color: rgb(44, 62, 80); }
-
-.govt-card { background: rgb(255, 255, 255); padding: 18px; border-radius: 12px; border-width: 1px 1px 1px 6px; border-style: solid; border-color: rgb(240, 240, 240) rgb(240, 240, 240) rgb(240, 240, 240) rgb(39, 174, 96); box-shadow: rgba(0, 0, 0, 0.05) 0px 4px 12px; text-align: left; margin-bottom: 20px; }
-
-.govt-card h3 { font-size: 16px; color: rgb(22, 160, 133); margin-bottom: 8px; }
-
-.holiday-name { font-size: 17px; font-weight: bold; color: rgb(44, 62, 80); }
-
-.holiday-date { color: rgb(127, 140, 141); font-size: 14px; margin-top: 4px; }
-
-.holiday-note { font-size: 11px; color: rgb(231, 76, 60); margin-top: 8px; border-top: 1px dashed rgb(221, 221, 221); padding-top: 5px; }
-
-.button-grid { display: grid; grid-template-columns: 1fr; gap: 15px; }
-
-.dash-btn { display: flex; align-items: center; justify-content: flex-start; gap: 15px; padding: 20px 18px; border-radius: 12px; text-decoration: none; color: rgb(255, 255, 255); font-size: 16px; font-weight: bold; transition: 0.3s; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 10px; }
-
-.dash-btn:hover { transform: translateY(-4px); box-shadow: rgba(0, 0, 0, 0.18) 0px 8px 20px; }
-
-.btn-overtime { background: linear-gradient(135deg, rgb(0, 140, 186), rgb(0, 95, 115)); }
-
-.btn-salary { background: linear-gradient(135deg, rgb(46, 125, 50), rgb(27, 94, 32)); }
-
-.btn-leave { background: linear-gradient(135deg, rgb(211, 84, 0), rgb(160, 64, 0)); }
-
-.btn-age { background: linear-gradient(135deg, rgb(124, 58, 237), rgb(79, 70, 229)); }
-
-.btn-payscale { background: linear-gradient(135deg, rgb(219, 39, 119), rgb(157, 23, 77)); }
-
-.btn-maintenance { background: linear-gradient(135deg, rgb(100, 116, 139), rgb(51, 65, 85)); }
-
-.icon { font-size: 22px; background: rgba(255, 255, 255, 0.2); padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; flex-shrink: 0; }
-
-.author-box { background-color: rgb(240, 247, 255); border: 1px dashed rgb(0, 140, 186); border-radius: 10px; padding: 18px; font-size: 14px; color: rgb(26, 37, 47); line-height: 1.6; text-align: center; }
-
-.author-box strong { color: rgb(0, 95, 115); }
-
-@media (min-width: 768px) {
-  .header-section { grid-column: span 2; }
-  .dashboard-grid { grid-template-columns: 1fr 1fr; align-items: start; }
-  .button-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
-  .dash-btn { padding: 25px 20px; font-size: 17px; }
-  .author-box { grid-column: span 2; margin-top: 10px; }
-}
-</style>
-    
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RMCH Management Dashboard</title>
-    
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: SolaimanLipi, Kalpurush, Arial, sans-serif; }
+
+        body { 
+            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
+            color: #333; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            min-height: 100vh; 
+            padding: 20px; 
+        }
+
+        /* প্রধান ড্যাশবোর্ড কার্ড */
+        .dashboard-card { 
+            background: #ffffff; 
+            padding: 35px 30px; 
+            border-radius: 16px; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); 
+            width: 100%; 
+            max-width: 1100px; /* ডেস্কটপে চওড়া লেআউট */
+        }
+
+        /* ডেস্কটপের জন্য কন্টেইনার গ্রিড */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        /* হেডার স্টাইল */
+        .header-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 { font-size: 26px; color: #1a252f; margin-bottom: 6px; }
+        p.subtitle { font-size: 15px; color: #666; }
+
+        /* তারিখ প্রদর্শন স্টাইল */
+        .date-display-box { 
+            background: #eef2f7; 
+            padding: 12px; 
+            border-radius: 10px; 
+            margin-bottom: 20px; 
+            border: 1px solid #dcdfe6; 
+            text-align: center;
+            line-height: 1.5; 
+        }
+        .date-display-box .date-text { font-size: 15px; font-weight: bold; color: #2c3e50; }
+
+        /* সরকারি ছুটির উইজেট স্টাইল */
+        .govt-card { 
+            background: #fff; 
+            padding: 18px; 
+            border-radius: 12px; 
+            border-left: 6px solid #27ae60; 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+            text-align: left; 
+            margin-bottom: 20px; 
+            border-top: 1px solid #f0f0f0; 
+            border-right: 1px solid #f0f0f0; 
+            border-bottom: 1px solid #f0f0f0; 
+        }
+        .govt-card h3 { font-size: 16px; color: #16a085; margin-bottom: 8px; }
+        .holiday-name { font-size: 17px; font-weight: bold; color: #2c3e50; }
+        .holiday-date { color: #7f8c8d; font-size: 14px; margin-top: 4px; }
+        .holiday-note { font-size: 11px; color: #e74c3c; margin-top: 8px; border-top: 1px dashed #ddd; padding-top: 5px; }
+
+        /* বাটন গ্রিড স্টাইল */
+        .button-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 15px; 
+        }
+
+        .dash-btn { 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start; 
+            gap: 15px; 
+            padding: 20px 18px; 
+            border-radius: 12px; 
+            text-decoration: none; 
+            color: #ffffff; 
+            font-size: 16px; 
+            font-weight: bold; 
+            transition: all 0.3s ease; 
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        .dash-btn:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); 
+        }
+
+        /* বিদ্যমান বাটন কালার */
+        .btn-overtime { background: linear-gradient(135deg, #008cba, #005f73); }
+        .btn-salary { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
+        .btn-leave { background: linear-gradient(135deg, #d35400, #a04000); }
+        .btn-age { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
+
+        /* নতুন ইউনিক বাটন কালার */
+        .btn-salary-9th { background: linear-gradient(135deg, #00b4db, #0083b0); } /* সাইয়ান-টিয়াল ইউনিক লুক */
+        .btn-maintenance { background: linear-gradient(135deg, #f2994a, #f2c94c); color: #2c3e50; } /* ওয়ার্নিং অ্যাম্বার-গোল্ডেন ইউনিক লুক */
+
+        .icon { 
+            font-size: 22px; 
+            background: rgba(255, 255, 255, 0.2); 
+            padding: 8px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            width: 44px; 
+            height: 44px; 
+            flex-shrink: 0; 
+        }
+
+        .author-box { 
+            background-color: #f0f7ff; 
+            border: 1px dashed #008cba; 
+            border-radius: 10px; 
+            padding: 18px; 
+            font-size: 14px; 
+            color: #1a252f; 
+            line-height: 1.6; 
+            text-align: center;
+        }
+        .author-box strong { color: #005f73; }
+
+        /* 💻 ডেস্কটপ ও ল্যাপটপ ভিউয়ের জন্য রেসপন্সিভ গ্রিড (৭৬৮ পিক্সেলের ওপরে) */
+        @media (min-width: 768px) {
+            .header-section {
+                grid-column: span 2;
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+                align-items: start;
+            }
+
+            .button-grid {
+                grid-template-columns: 1fr 1fr; /* বাটনগুলো ২ কলামে সাজাবে */
+                gap: 20px;
+            }
+
+            .dash-btn {
+                padding: 25px 20px; /* ডেস্কটপে বড় ও স্টাইলিশ বাটন */
+                font-size: 17px;
+            }
+
+            .author-box {
+                grid-column: span 2;
+                margin-top: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -76,15 +174,12 @@ p.subtitle { font-size: 15px; color: rgb(102, 102, 102); }
             <!-- বাম পাশের কলাম: তারিখ ও ছুটির তথ্য -->
             <div class="left-panel">
                 <div class="date-display-box">
-                    <div class="date-text" id="current-date-display">📅 আজ: মঙ্গলবার, ২৯ সেপ্টেম্বর, ২০২৬<br><span style="color: #27ae60; font-size: 14px;">(১৪ আশ্বিন, ১৪৩৩ বঙ্গাব্দ)</span></div>
+                    <div class="date-text" id="current-date-display">আজকের তারিখ লোড হচ্ছে...</div>
                 </div>
 
                 <div class="govt-card">
                     <h3>📌 পরবর্তী সরকারি ছুটি</h3>
-                    <div id="holiday-info">
-        <div class="holiday-name">দুর্গাপূজা (নবমী ও দশমী)</div>
-        <div class="holiday-date">তারিখ: ২০-২১ অক্টোবর ২০২৬</div>
-    </div>
+                    <div id="holiday-info">লোডিং...</div>
                     <div class="holiday-note">* ধর্মীয় ছুটি চাঁদ দেখা বা পঞ্জিকার ওপর নির্ভর করে পরিবর্তিত হতে পারে।</div>
                 </div>
             </div>
@@ -99,12 +194,12 @@ p.subtitle { font-size: 15px; color: rgb(102, 102, 102); }
 
                     <a href="https://manik-rmch.github.io/salary-calculator/" class="dash-btn btn-salary">
                         <span class="icon">💰</span>
-                        <span>স্যালারি ক্যালকুলেটর (৮ম পে স্কেল অনুযায়ী)</span>
+                        <span>স্যালারি ক্যালকুলেটর (৮ম পে স্কেল অনুযায়ী)</span>
                     </a>
 
-                    <a href="https://manik-rmch.github.io/9th-pay-scale/" class="dash-btn btn-payscale">
-                        <span class="icon">🧮</span>
-                        <span>স্যালারি ক্যালকুলেটর (৯ম পে স্কেল অনুযায়ী)</span>
+                    <a href="https://manik-rmch.github.io/9th-pay-scale/" class="dash-btn btn-salary-9th">
+                        <span class="icon">💵</span>
+                        <span>স্যালারি ক্যালকুলেটর (৯ম পে স্কেল অনুযায়ী)</span>
                     </a>
 
                     <a href="https://manik-rmch.github.io/leave-calculator" class="dash-btn btn-leave">
@@ -117,9 +212,9 @@ p.subtitle { font-size: 15px; color: rgb(102, 102, 102); }
                         <span>বয়স ও ডেট-টাইম ক্যালকুলেটর</span>
                     </a>
 
-                    <a href="javascript:void(0)" class="dash-btn btn-maintenance" onclick="alert('এই সেবাটি বর্তমানে আন্ডার মেনটেনেন্সে আছে।'); return false;">
+                    <a href="#" class="dash-btn btn-maintenance">
                         <span class="icon">🛠️</span>
-                        <span>আন্ডার মেনটেনেন্স </span>
+                        <span>আন্ডার মেনটেনেন্স</span>
                     </a>
                 </div>
             </div>
@@ -133,8 +228,98 @@ p.subtitle { font-size: 15px; color: rgb(102, 102, 102); }
         </div>
     </div>
 
+<script>
+    function toBanglaNum(num) {
+        const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
+        return num.toString().replace(/\d/g, d => banglaDigits[d]);
+    }
 
+    function getBanglaDate(date) {
+        const banglaMonths = ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'];
+        const monthDays = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 29, 30];
 
+        let year = date.getFullYear();
+        let month = date.getMonth();
+        let day = date.getDate();
 
+        let isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
+        if (isLeapYear) {
+            monthDays[10] = 30;
+        }
 
-</body></html>
+        let banglaYear = month < 3 || (month === 3 && day < 14) ? year - 594 : year - 593;
+
+        let pohelaBoishakh = new Date(year, 3, 14);
+        if (date < pohelaBoishakh) {
+            pohelaBoishakh = new Date(year - 1, 3, 14);
+        }
+
+        let diffInDays = Math.floor((date - pohelaBoishakh) / (1000 * 60 * 60 * 24));
+
+        let banglaMonthIndex = 0;
+        let banglaDay = diffInDays + 1;
+
+        for (let i = 0; i < monthDays.length; i++) {
+            if (banglaDay <= monthDays[i]) {
+                banglaMonthIndex = i;
+                break;
+            }
+            banglaDay -= monthDays[i];
+        }
+
+        return `${toBanglaNum(banglaDay)} ${banglaMonths[banglaMonthIndex]}, ${toBanglaNum(banglaYear)} বঙ্গাব্দ`;
+    }
+
+    const now = new Date();
+    const optionsBn = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const dateInBn = now.toLocaleDateString('bn-BD', optionsBn);
+    const banglaDateStr = getBanglaDate(now);
+
+    document.getElementById('current-date-display').innerHTML = `📅 আজ: ${dateInBn}<br><span style="color: #27ae60; font-size: 14px;">(${banglaDateStr})</span>`;
+
+    const holidays = [
+        { name: "শবে বরাত", startDate: "2026-02-04", endDate: "2026-02-04", displayDate: "০৪/০২/২০২৬" },
+        { name: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", startDate: "2026-02-21", endDate: "2026-02-21", displayDate: "২১/০২/২০২৬" },
+        { name: "শবে কদর", startDate: "2026-03-17", endDate: "2026-03-17", displayDate: "১৭/০৩/২০২৬" },
+        { name: "ঈদুল ফিতর", startDate: "2026-03-19", endDate: "2026-03-23", displayDate: "১৯-২৩ মার্চ ২০২৬" },
+        { name: "স্বাধীনতা ও জাতীয় দিবস", startDate: "2026-03-26", endDate: "2026-03-26", displayDate: "২৬/০৩/২০২৬" },
+        { name: "পহেলা বৈশাখ", startDate: "2026-04-14", endDate: "2026-04-14", displayDate: "১৪/০৪/২০২৬" },
+        { name: "মে দিবস / বুদ্ধ পূর্ণিমা", startDate: "2026-05-01", endDate: "2026-05-01", displayDate: "০১/০৫/২০২৬" },
+        { name: "ঈদুল আজহা", startDate: "2026-05-26", endDate: "2026-05-31", displayDate: "২৬-৩১ মে ২০২৬" },
+        { name: "আশূরা (১০ই মহররম)", startDate: "2026-06-26", endDate: "2026-06-26", displayDate: "২৬/০৬/২০২৬" },
+        { name: "জুলাই গণঅভ্যুত্থান দিবস", startDate: "2026-08-05", endDate: "2026-08-05", displayDate: "০৫/০৮/২০২৬" },
+        { name: "ঈদে মিলাদুন্নবী (সা.)", startDate: "2026-08-26", endDate: "2026-08-26", displayDate: "২৬/০৮/২০২৬" },
+        { name: "শুভ জন্মাষ্টমী", startDate: "2026-09-04", endDate: "2026-09-04", displayDate: "০৪/০৯/২০২৬" },
+        { name: "দুর্গাপূজা (নবমী ও দশমী)", startDate: "2026-10-20", endDate: "2026-10-21", displayDate: "২০-২১ অক্টোবর ২০২৬" },
+        { name: "বিজয় দিবস", startDate: "2026-12-16", endDate: "2026-12-16", displayDate: "১৬/১২/২০২৬" },
+        { name: "যীশুর জন্মোৎসব (বড়দিন)", startDate: "2026-12-25", endDate: "2026-12-25", displayDate: "২৫/১২/২০২৬" },
+
+        { name: "শবে বরাত", startDate: "2027-01-24", endDate: "2027-01-24", displayDate: "২৪/০১/২০২৭" },
+        { name: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", startDate: "2027-02-21", endDate: "2027-02-21", displayDate: "২১/০২/২০২৭" },
+        { name: "শবে কদর", startDate: "2027-03-06", endDate: "2027-03-06", displayDate: "০৬/০৩/২০২৭" },
+        { name: "ঈদুল ফিতর", startDate: "2027-03-09", endDate: "2027-03-11", displayDate: "০৯-১১ মার্চ ২০২৭" },
+        { name: "স্বাধীনতা ও জাতীয় দিবস", startDate: "2027-03-26", endDate: "2027-03-26", displayDate: "২৬/০৩/২০২৭" },
+        { name: "পহেলা বৈশাখ", startDate: "2027-04-14", endDate: "2027-04-14", displayDate: "১৪/০৪/২০২৭" },
+        { name: "মে দিবস", startDate: "2027-05-01", endDate: "2027-05-01", displayDate: "০১/০৫/২০২৭" },
+        { name: "ঈদুল আজহা", startDate: "2027-05-16", endDate: "2027-05-18", displayDate: "১৬-১৮ মে ২০২৭" },
+        { name: "বুদ্ধ পূর্ণিমা", startDate: "2027-05-20", endDate: "2027-05-20", displayDate: "২০/০৫/২০২৭" },
+        { name: "আশূরা (১০ই মহররম)", startDate: "2027-06-15", endDate: "2027-06-15", displayDate: "১৫/০৬/২০২৭" },
+        { name: "জুলাই গণঅভ্যুত্থান দিবস", startDate: "2027-08-05", endDate: "2027-08-05", displayDate: "০৫/০৮/২০২৭" },
+        { name: "ঈদে মিলাদুন্নবী (সা.)", startDate: "2027-08-15", endDate: "2027-08-15", displayDate: "১৫/০৮/২০২৭" },
+        { name: "শুভ জন্মাষ্টমী", startDate: "2027-08-25", endDate: "2027-08-25", displayDate: "২৫/০৮/২০২৭" },
+        { name: "দুর্গাপূজা (নবমী ও দশমী)", startDate: "2027-10-08", endDate: "2027-10-09", displayDate: "০৮-০৯ অক্টোবর ২০২৭" },
+        { name: "বিজয় দিবস", startDate: "2027-12-16", endDate: "2027-12-16", displayDate: "১৬/১২/২০২৭" },
+        { name: "যীশুর জন্মোৎসব (বড়দিন)", startDate: "2027-12-25", endDate: "2027-12-25", displayDate: "২৫/১২/২০২৭" }
+    ];
+
+    const todayStr = now.toISOString().split('T')[0];
+    const nextHoliday = holidays.find(h => h.endDate >= todayStr) || holidays[holidays.length - 1];
+
+    document.getElementById('holiday-info').innerHTML = `
+        <div class="holiday-name">${nextHoliday.name}</div>
+        <div class="holiday-date">তারিখ: ${nextHoliday.displayDate}</div>
+    `;
+</script>
+
+</body>
+</html>
