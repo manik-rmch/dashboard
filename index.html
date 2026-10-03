@@ -92,6 +92,7 @@
             font-weight: bold; 
             transition: all 0.3s ease; 
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); 
+            cursor: pointer;
         }
 
         .dash-btn:hover { 
@@ -99,15 +100,13 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18); 
         }
 
-        /* বিদ্যমান বাটন কালার */
+        /* বাটন কালার */
         .btn-overtime { background: linear-gradient(135deg, #008cba, #005f73); }
         .btn-salary { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
         .btn-leave { background: linear-gradient(135deg, #d35400, #a04000); }
         .btn-age { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
-
-        /* নতুন ইউনিক বাটন কালার */
-        .btn-salary-9th { background: linear-gradient(135deg, #00b4db, #0083b0); } /* সাইয়ান-টিয়াল ইউনিক লুক */
-        .btn-maintenance { background: linear-gradient(135deg, #f2994a, #f2c94c); color: #2c3e50; } /* ওয়ার্নিং অ্যাম্বার-গোল্ডেন ইউনিক লুক */
+        .btn-salary-9th { background: linear-gradient(135deg, #00b4db, #0083b0); } 
+        .btn-maintenance { background: linear-gradient(135deg, #f2994a, #f2c94c); color: #2c3e50; } 
 
         .icon { 
             font-size: 22px; 
@@ -212,9 +211,10 @@
                         <span>বয়স ও ডেট-টাইম ক্যালকুলেটর</span>
                     </a>
 
-                    <a href="#" class="dash-btn btn-maintenance">
+                    <!-- মেসেজ দেখানোর জন্য অনক্লিক এলার্ট যুক্ত করা বাটন -->
+                    <a href="javascript:void(0);" onclick="alert('ধন্যবাদ! এই সার্ভিসটি বর্তমানে আন্ডার মেইনটেনেন্সে রয়েছে। শীঘ্রই এটি চালু করা হবে।');" class="dash-btn btn-maintenance">
                         <span class="icon">🛠️</span>
-                        <span>আন্ডার মেনটেনেন্স</span>
+                        <span>আন্ডার মেইনটেনেন্স</span>
                     </a>
                 </div>
             </div>
@@ -290,7 +290,7 @@
         { name: "জুলাই গণঅভ্যুত্থান দিবস", startDate: "2026-08-05", endDate: "2026-08-05", displayDate: "০৫/০৮/২০২৬" },
         { name: "ঈদে মিলাদুন্নবী (সা.)", startDate: "2026-08-26", endDate: "2026-08-26", displayDate: "২৬/০৮/২০২৬" },
         { name: "শুভ জন্মাষ্টমী", startDate: "2026-09-04", endDate: "2026-09-04", displayDate: "০৪/০৯/২০২৬" },
-        { name: "দুর্গাপূজা (নবমী ও দশমী)", startDate: "2026-10-20", endDate: "2026-10-24", displayDate: "২০-২৪ অক্টোবর ২০২৬" },
+        { name: "দুর্গাপূজা", startDate: "2026-10-20", endDate: "2026-10-24", displayDate: "২০-২৪ অক্টোবর ২০২৬" },
         { name: "বিজয় দিবস", startDate: "2026-12-16", endDate: "2026-12-16", displayDate: "১৬/১২/২০২৬" },
         { name: "যীশুর জন্মোৎসব (বড়দিন)", startDate: "2026-12-25", endDate: "2026-12-25", displayDate: "২৫/১২/২০২৬" },
 
