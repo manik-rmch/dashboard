@@ -1,304 +1,138 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RMCH Management Dashboard</title>
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: SolaimanLipi, Kalpurush, Arial, sans-serif; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0f4c5c">
 
-        body { 
-            background: linear-gradient(135deg, #eef2f3 0%, #8e9eab 100%);
-            color: #333; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            min-height: 100vh; 
-            padding: 15px; 
-        }
+  <title>হিসাবপাতা — বাংলা স্মার্ট টুলস | বেতন, ছুটি ও বয়স ক্যালকুলেটর</title>
+  <meta name="description" content="বয়স, সরকারি পে-স্কেল, বেতন ও ছুটির হিসাবের জন্য সহজ বাংলা অনলাইন ক্যালকুলেটর। প্রয়োজনীয় স্মার্ট টুলস এক জায়গায়।">
+  <link rel="canonical" href="https://manik-rmch.github.io/dashboard/">
 
-        /* প্রধান ড্যাশবোর্ড কার্ড */
-        .dashboard-card { 
-            background: #ffffff; 
-            padding: 25px 20px; 
-            border-radius: 16px; 
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12); 
-            width: 100%; 
-            max-width: 1050px; 
-        }
+  <!-- ফেসবুক ও অন্যান্য জায়গায় লিংক শেয়ার করলে যা দেখাবে -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="bn_BD">
+  <meta property="og:site_name" content="হিসাবপাতা">
+  <meta property="og:title" content="হিসাবপাতা — বাংলা স্মার্ট টুলস">
+  <meta property="og:description" content="বয়স, সরকারি পে-স্কেল, বেতন ও ছুটির হিসাবের জন্য সহজ বাংলা অনলাইন ক্যালকুলেটর। প্রয়োজনীয় স্মার্ট টুলস এক জায়গায়।">
+  <meta property="og:url" content="https://manik-rmch.github.io/dashboard/">
+  <meta property="og:image" content="https://manik-rmch.github.io/dashboard/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
 
-        /* হেডার স্টাইল */
-        .header-section {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        h1 { font-size: 24px; color: #1a252f; margin-bottom: 4px; }
-        p.subtitle { font-size: 14px; color: #666; }
-
-        /* টপ প্যানেল: তারিখ ও ছুটি কম্প্যাক্ট গ্রিড */
-        .top-panel-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        /* তারিখ প্রদর্শন স্টাইল (কম্প্যাক্ট) */
-        .date-display-box { 
-            background: #f4f6f9; 
-            padding: 10px 14px; 
-            border-radius: 10px; 
-            border: 1px solid #dcdfe6; 
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 80px;
-        }
-        .date-display-box .date-text { font-size: 15px; font-weight: bold; color: #2c3e50; line-height: 1.4; }
-
-        /* সরকারি ছুটির উইজেট স্টাইল (কম্প্যাক্ট) */
-        .govt-card { 
-            background: #fff; 
-            padding: 10px 14px; 
-            border-radius: 10px; 
-            border-left: 5px solid #27ae60; 
-            box-shadow: 0 2px 8px rgba(0,0,0,0.04); 
-            text-align: left; 
-            border-top: 1px solid #f0f0f0; 
-            border-right: 1px solid #f0f0f0; 
-            border-bottom: 1px solid #f0f0f0; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 80px;
-        }
-        .govt-card h3 { font-size: 14px; color: #16a085; margin-bottom: 3px; display: flex; align-items: center; gap: 5px; }
-        .holiday-name { font-size: 15px; font-weight: bold; color: #2c3e50; display: inline; }
-        .holiday-date { color: #666; font-size: 13px; display: inline; margin-left: 6px; }
-        .holiday-note { font-size: 11px; color: #e74c3c; margin-top: 4px; padding-top: 3px; border-top: 1px dashed #eee; }
-
-        /* বাটন গ্রিড স্টাইল */
-        .button-grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 15px; 
-            margin-bottom: 20px;
-        }
-
-        .dash-btn { 
-            display: flex; 
-            align-items: center; 
-            justify-content: flex-start; 
-            gap: 12px; 
-            padding: 15px 16px; 
-            border-radius: 10px; 
-            text-decoration: none; 
-            color: #ffffff; 
-            font-size: 15px; 
-            font-weight: bold; 
-            transition: all 0.3s ease; 
-            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08); 
-            cursor: pointer;
-        }
-
-        .dash-btn:hover { 
-            transform: translateY(-3px); 
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15); 
-        }
-
-        /* বাটন কালার */
-        .btn-overtime { background: linear-gradient(135deg, #008cba, #005f73); }
-        .btn-salary { background: linear-gradient(135deg, #2e7d32, #1b5e20); }
-        .btn-leave { background: linear-gradient(135deg, #d35400, #a04000); }
-        .btn-age { background: linear-gradient(135deg, #7c3aed, #4f46e5); }
-        .btn-salary-9th { background: linear-gradient(135deg, #00b4db, #0083b0); } 
-        .btn-recreation { background: linear-gradient(135deg, #009688, #004d40); } 
-        .btn-service-leave { background: linear-gradient(135deg, #e67e22, #b9770e); }
-
-        .icon { 
-            font-size: 18px; 
-            background: rgba(255, 255, 255, 0.2); 
-            padding: 6px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            width: 36px; 
-            height: 36px; 
-            flex-shrink: 0; 
-        }
-
-        .author-box { 
-            background-color: #f0f7ff; 
-            border: 1px dashed #008cba; 
-            border-radius: 8px; 
-            padding: 12px; 
-            font-size: 13px; 
-            color: #1a252f; 
-            line-height: 1.5; 
-            text-align: center;
-        }
-        .author-box strong { color: #005f73; }
-
-        /* 💻 ডেস্কটপ ভিউ রেসপন্সিভ */
-        @media (min-width: 768px) {
-            .top-panel-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .button-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .dash-btn {
-                padding: 16px 18px;
-                font-size: 16px;
-            }
-        }
-    </style>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <a class="skip-link" href="#tools">মূল অংশে যান</a>
 
-    <div class="dashboard-card">
-        <!-- হেডার -->
-        <div class="header-section">
-            <h1>রাজশাহী মেডিকেল কলেজ হাসপাতাল</h1>
-            <p class="subtitle">ড্রাইভার সেকশন ম্যানেজমেন্ট ড্যাশবোর্ড</p>
-        </div>
+  <header class="site-header">
+    <div class="wrap">
+      <nav class="nav" aria-label="প্রধান মেনু">
+        <a class="brand" href="./" aria-label="হিসাবপাতা — হোমপেজ">
+          <span class="brand-mark" aria-hidden="true">হি</span>
+          <span class="brand-text">
+            <span class="brand-name">হিসাবপাতা</span>
+            <span class="brand-sub">বাংলা স্মার্ট টুলস</span>
+          </span>
+        </a>
+        <span class="nav-label">সহজ হিসাব • এক জায়গায়</span>
+      </nav>
 
-        <!-- ওপরের সেকশন: কম্প্যাক্ট তারিখ ও ছুটি -->
-        <div class="top-panel-grid">
-            <div class="date-display-box">
-                <div class="date-text" id="current-date-display">আজকের তারিখ লোড হচ্ছে...</div>
-            </div>
+      <div class="hero">
+        <h1>আপনার প্রতিদিনের হিসাব, এখন আরও সহজ</h1>
+        <p class="tagline">প্রয়োজনীয় হিসাব, এখন এক জায়গায়</p>
+        <p class="hero-text">বয়স, বেতন, সরকারি পে-স্কেল ও ছুটির হিসাব করুন সহজেই। প্রয়োজনীয় বাংলা অনলাইন ক্যালকুলেটরগুলো এখন এক জায়গায়।</p>
 
-            <div class="govt-card">
-                <h3>📌 পরবর্তী সরকারি ছুটি</h3>
-                <div id="holiday-info">লোডিং...</div>
-                <div class="holiday-note">* ধর্মীয় ছুটি চাঁদ দেখা বা পঞ্জিকার ওপর নির্ভর করে পরিবর্তিত হতে পারে।</div>
-            </div>
-        </div>
+        <form class="search-form" id="search-form" role="search">
+          <label for="tool-search" class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;">টুল খুঁজুন</label>
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+            </span>
+            <input type="search" id="tool-search" placeholder="যে টুলটি খুঁজছেন, লিখুন…" autocomplete="off" enterkeyhint="search">
+            <button type="button" class="search-clear" id="search-clear" aria-label="সার্চ মুছুন" hidden>✕</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </header>
 
-        <!-- বাটন সেকশন -->
-        <div class="button-grid">
-            <a href="https://manik-rmch.github.io/overtime-bill/" class="dash-btn btn-overtime">
-                <span class="icon">📝</span>
-                <span>ওভারটাইম বিল তৈরি</span>
-            </a>
+  <main class="main wrap" id="main">
+    <div class="top-row" id="top-row">
+    <!-- আজকের তারিখ ও সময় (ডিভাইসের সময় অনুযায়ী) -->
+    <section class="date-panel" aria-label="আজকের তারিখ ও সময়">
+      <div class="date-item">
+        <div class="date-label">আজ</div>
+        <div class="date-value" id="date-weekday"></div>
+        <div class="date-sub" id="date-english"></div>
+      </div>
+      <div class="date-item" id="bangla-date-box" hidden>
+        <div class="date-label">বাংলা তারিখ</div>
+        <div class="date-value" id="date-bangla"></div>
+        <div class="date-sub" id="date-fy"></div>
+      </div>
+      <div class="date-item">
+        <div class="date-label">এখন সময়</div>
+        <div class="date-value" id="date-time"></div>
+        <div class="date-sub" id="date-daytype"></div>
+      </div>
+    </section>
 
-            <a href="https://manik-rmch.github.io/age-calculator/" class="dash-btn btn-age">
-                <span class="icon">📅</span>
-                <span>বয়স ও ডেট-টাইম ক্যালকুলেটর</span>
-            </a>
-
-            <a href="https://manik-rmch.github.io/salary-calculator/" class="dash-btn btn-salary">
-                <span class="icon">💰</span>
-                <span>স্যালারি ক্যালকুলেটর (৮ম পে স্কেল অনুযায়ী)</span>
-            </a>
-
-            <a href="https://manik-rmch.github.io/9th-pay-scale/" class="dash-btn btn-salary-9th">
-                <span class="icon">💵</span>
-                <span>স্যালারি ক্যালকুলেটর (৯ম পে স্কেল অনুযায়ী)</span>
-            </a>
-
-            <a href="https://manik-rmch.github.io/leave-calculator" class="dash-btn btn-leave">
-                <span class="icon">🏖️</span>
-                <span>অর্জিত ছুটি ক্যালকুলেটর</span>
-            </a>
-
-            <a href="https://manik-rmch.github.io/earned-leave-online/" class="dash-btn btn-service-leave">
-                <span class="icon">📖</span>
-                <span>অনলাইন অর্জিত ছুটি ক্যালকুলেটর (সার্ভিস বুক)</span>
-            </a>
-
-            <a href="https://manik-rmch.github.io/rest-and-recreation-leave/" class="dash-btn btn-recreation">
-                <span class="icon">🌴</span>
-                <span>শ্রান্তি বিনোদন ছুটি ক্যালকুলেটর</span>
-            </a>
-        </div>
-
-        <!-- প্রস্তুতকারক তথ্য -->
-        <div class="author-box">
-            <strong>প্রস্তুতকারক:</strong> মোঃ মানিক | গাড়ি চালক, রাজশাহী মেডিকেল কলেজ হাসপাতাল, রাজশাহী। | <strong>মোবাইল:</strong> ০১৭২৯-৮১৫২৯১
-        </div>
+    <!-- পরবর্তী সরকারি ছুটি: ডানদিকে, মাত্র তিন লাইন (তথ্য holidays.js ফাইলে) -->
+    <section class="holiday-card" id="holiday-card" aria-label="পরবর্তী সরকারি ছুটি" hidden>
+      <div class="holiday-head">
+        <span class="holiday-label">পরবর্তী সরকারি ছুটি</span>
+        <span class="holiday-pill" id="holiday-pill" hidden></span>
+      </div>
+      <div class="holiday-title"><span class="holiday-name" id="holiday-name"></span> <span class="holiday-date" id="holiday-date"></span></div>
+      <div class="holiday-note">* ধর্মীয় ছুটি চাঁদ দেখা বা পঞ্জিকার ওপর নির্ভর করে পরিবর্তিত হতে পারে।</div>
+    </section>
     </div>
 
-<script>
-    function toBanglaNum(num) {
-        const banglaDigits = {'0':'০', '1':'১', '2':'২', '3':'৩', '4':'৪', '5':'৫', '6':'৬', '7':'৭', '8':'৮', '9':'৯'};
-        return num.toString().replace(/\d/g, d => banglaDigits[d]);
-    }
+    <section id="tools" aria-labelledby="tools-heading">
+      <div class="section-head">
+        <h2 id="tools-heading">দরকারি টুলস</h2>
+        <p>আপনার কাজের টুলটি বেছে নিন</p>
+      </div>
 
-    function getBanglaDate(date) {
-        const banglaMonths = ['বৈশাখ', 'জ্যৈষ্ঠ', 'আষাঢ়', 'শ্রাবণ', 'ভাদ্র', 'আশ্বিন', 'কার্তিক', 'অগ্রহায়ণ', 'পৌষ', 'মাঘ', 'ফাল্গুন', 'চৈত্র'];
-        const monthDays = [31, 31, 31, 31, 31, 31, 30, 30, 30, 30, 29, 30];
+      <div class="filters" id="category-filters" role="group" aria-label="টুলের বিভাগ"></div>
+      <p class="result-status" id="result-status" aria-live="polite"></p>
 
-        let year = date.getFullYear();
-        let month = date.getMonth();
-        let day = date.getDate();
+      <div class="tools-grid" id="tools-grid"></div>
 
-        let isLeapYear = (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0);
-        if (isLeapYear) {
-            monthDays[10] = 30;
-        }
+      <div class="empty-state" id="empty-state" hidden>
+        <p class="empty-title">দুঃখিত, কোনো টুল পাওয়া যায়নি</p>
+        <p>অন্য শব্দ লিখে খুঁজুন, অথবা সার্চ মুছে “সব টুল” বেছে নিন।</p>
+      </div>
 
-        let banglaYear = (month < 3 || (month === 3 && day < 14)) ? year - 594 : year - 593;
+      <noscript>
+        <p class="notice">টুলের তালিকা দেখতে আপনার ব্রাউজারে JavaScript চালু থাকতে হবে।</p>
+      </noscript>
+    </section>
 
-        let pohelaBoishakh = new Date(year, 3, 14);
-        if (date < pohelaBoishakh) {
-            pohelaBoishakh = new Date(year - 1, 3, 14);
-        }
+    <aside class="notice" id="notice">
+      <strong>একটি নোট:</strong> বেতন, ছুটি ও সরকারি সুবিধার হিসাব সংশ্লিষ্ট সরকারি বিধি, প্রজ্ঞাপন এবং প্রযোজ্য শর্তের ওপর নির্ভর করতে পারে। গুরুত্বপূর্ণ সিদ্ধান্তের আগে মূল সরকারি নির্দেশনা যাচাই করুন।
+    </aside>
+  </main>
 
-        let diffInDays = Math.floor((date - pohelaBoishakh) / (1000 * 60 * 60 * 24));
+  <footer class="site-footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div><strong>হিসাবপাতা</strong> · বাংলা স্মার্ট টুলস</div>
+        <div class="footer-center">
+          <div>পরিকল্পনা ও প্রস্তুতিতে: মোঃ মানিক</div>
+          <div class="footer-sub">গাড়ি চালক, রাজশাহী মেডিকেল কলেজ হাসপাতাল, রাজশাহী। মোবাইলঃ ০১৭২৯-৮১৫২৯১</div>
+        </div>
+        <div class="footer-note">সহজ হিসাব, সবার জন্য</div>
+      </div>
+    </div>
+  </footer>
 
-        let banglaMonthIndex = 0;
-        let banglaDay = diffInDays + 1;
-
-        for (let i = 0; i < monthDays.length; i++) {
-            if (banglaDay <= monthDays[i]) {
-                banglaMonthIndex = i;
-                break;
-            }
-            banglaDay -= monthDays[i];
-        }
-
-        return `${toBanglaNum(banglaDay)} ${banglaMonths[banglaMonthIndex]}, ${toBanglaNum(banglaYear)} বঙ্গাব্দ`;
-    }
-
-    const now = new Date();
-    const optionsBn = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    const dateInBn = now.toLocaleDateString('bn-BD', optionsBn);
-    const banglaDateStr = getBanglaDate(now);
-
-    document.getElementById('current-date-display').innerHTML = `📅 আজ: ${dateInBn} <br><span style="color: #27ae60; font-size: 13px;">(${banglaDateStr})</span>`;
-
-    const holidays = [
-        { name: "শবে বরাত", startDate: "2026-02-04", endDate: "2026-02-04", displayDate: "০৪/০২/২০২৬" },
-        { name: "শহীদ দিবস ও আন্তর্জাতিক মাতৃভাষা দিবস", startDate: "2026-02-21", endDate: "2026-02-21", displayDate: "২১/০২/২০২৬" },
-        { name: "শবে কদর", startDate: "2026-03-17", endDate: "2026-03-17", displayDate: "১৭/০৩/২০২৬" },
-        { name: "ঈদুল ফিতর", startDate: "2026-03-19", endDate: "2026-03-23", displayDate: "১৯-২৩ মার্চ ২০২৬" },
-        { name: "স্বাধীনতা ও জাতীয় দিবস", startDate: "2026-03-26", endDate: "2026-03-26", displayDate: "২৬/০৩/২০২৬" },
-        { name: "পহেলা বৈশাখ", startDate: "2026-04-14", endDate: "2026-04-14", displayDate: "১৪/০৪/২০২৬" },
-        { name: "মে দিবস / বুদ্ধ পূর্ণিমা", startDate: "2026-05-01", endDate: "2026-05-01", displayDate: "০১/০৫/২০২৬" },
-        { name: "ঈদুল আজহা", startDate: "2026-05-26", endDate: "2026-05-31", displayDate: "২৬-৩১ মে ২০২৬" },
-        { name: "আশূরা (১০ই মহররম)", startDate: "2026-06-26", endDate: "2026-06-26", displayDate: "২৬/০৬/২০২৬" },
-        { name: "জুলাই গণঅভ্যুত্থান দিবস", startDate: "2026-08-05", endDate: "2026-08-05", displayDate: "০৫/০৮/২০২৬" },
-        { name: "ঈদে মিলাদুন্নবী (সা.)", startDate: "2026-08-26", endDate: "2026-08-26", displayDate: "২৬/০৮/২০২৬" },
-        { name: "শুভ জন্মাষ্টমী", startDate: "2026-09-04", endDate: "2026-09-04", displayDate: "০৪/০৯/২০২৬" },
-        { name: "দুর্গাপূজা", startDate: "2026-10-20", endDate: "2026-10-22", displayDate: "২০-২২ অক্টোবর ২০২৬" },
-        { name: "বিজয় দিবস", startDate: "2026-12-16", endDate: "2026-12-16", displayDate: "১৬/১২/২০২৬" },
-        { name: "যীশুর জন্মোৎসব (বড়দিন)", startDate: "2026-12-25", endDate: "2026-12-25", displayDate: "২৫/১২/২০২৬" }
-    ];
-
-    const todayStr = now.toISOString().split('T')[0];
-    const nextHoliday = holidays.find(h => h.endDate >= todayStr) || holidays[holidays.length - 1];
-
-    document.getElementById('holiday-info').innerHTML = `
-        <span class="holiday-name">${nextHoliday.name}</span> - 
-        <span class="holiday-date">তারিখ: ${nextHoliday.displayDate}</span>
-    `;
-</script>
-
+  <!-- ক্রম গুরুত্বপূর্ণ: আগে tools.js, তারপর script.js -->
+  <script src="tools.js"></script>
+  <script src="holidays.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
