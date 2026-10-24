@@ -110,6 +110,16 @@ const TOOLS = [
     url: 'https://manik-rmch.github.io/overtime-bill/',
     visibility: 'public'
   },
+   {
+    id: 'pension',
+    name: 'সরকারি পেনশন ক্যালকুলেটর',
+    description: 'নতুন ও পুরাতন পেনশনারের মাসিক পেনশন, আনুতোষিক, ছুটি নগদায়ন ও ভাতার হিসাব করুন।',
+    category: 'salary',
+    keywords: 'পেনশন অবসর আনুতোষিক গ্র্যাচুইটি ছুটি নগদায়ন পিআরএল নিট পেনশন pension gratuity retirement prl',
+    icon: '🧓',
+    url: 'https://manik-rmch.github.io/pension-calculator/',
+    visibility: 'public'
+  },
   {
     id: 'tin-certificate',
     name: 'টিন সার্টিফিকেট খুলুন',
