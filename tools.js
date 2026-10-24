@@ -99,6 +99,16 @@ const TOOLS = [
     url: 'https://manik-rmch.github.io/rest-and-recreation-leave/',
     visibility: 'public'
   },
+    {
+    id: 'pension',
+    name: 'সরকারি পেনশন ক্যালকুলেটর',
+    description: 'নতুন ও পুরাতন পেনশনারের মাসিক পেনশন, আনুতোষিক, ছুটি নগদায়ন ও ভাতার হিসাব করুন।',
+    category: 'salary',
+    keywords: 'পেনশন অবসর আনুতোষিক গ্র্যাচুইটি ছুটি নগদায়ন পিআরএল নিট পেনশন pension gratuity retirement prl',
+    icon: '🧓',
+    url: 'https://manik-rmch.github.io/pension-calculator/',
+    visibility: 'public'
+  },
   {
     id: 'overtime-bill',
     name: 'অধিকাল ভাতার বিল তৈরি',
@@ -108,16 +118,6 @@ const TOOLS = [
     icon: '📝',
     badge: '🔒 পাসওয়ার্ড সুরক্ষিত',
     url: 'https://manik-rmch.github.io/overtime-bill/',
-    visibility: 'public'
-  },
-   {
-    id: 'pension',
-    name: 'সরকারি পেনশন ক্যালকুলেটর',
-    description: 'নতুন ও পুরাতন পেনশনারের মাসিক পেনশন, আনুতোষিক, ছুটি নগদায়ন ও ভাতার হিসাব করুন।',
-    category: 'salary',
-    keywords: 'পেনশন অবসর আনুতোষিক গ্র্যাচুইটি ছুটি নগদায়ন পিআরএল নিট পেনশন pension gratuity retirement prl',
-    icon: '🧓',
-    url: 'https://manik-rmch.github.io/pension-calculator/',
     visibility: 'public'
   },
   {
