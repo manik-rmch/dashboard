@@ -34,28 +34,11 @@ const CATEGORIES = [
   { id: 'salary', label: 'বেতন ও পে-স্কেল' },
   { id: 'leave',  label: 'ছুটি ও চাকরির হিসাব' },
   { id: 'date',   label: 'বয়স ও তারিখ' },
-  { id: 'govt',   label: 'সরকারি সেবা' },
-  { id: 'typing',   label: 'টাইপিং টেস্ট' }
+  { id: 'govt',   label: 'সরকারি সেবা' }
 ];
 
 // টুলের তালিকা
 const TOOLS = [
-   {
-    id: 'typing-test',
-    name: 'টাইপিং টেস্ট',
-    description: 'সরকারি চাকরির কম্পিউটার মুদ্রাক্ষরিক পদের প্রস্তুতির জন্য বাংলা ও ইংরেজি টাইপিং অনুশীলন। গতি (WPM), Accuracy ও ভুল শব্দসহ ফলাফল দেখুন।',
-    category: 'typing',
-    keywords: 'টাইপিং', 'টাইপ', 'বাংলা টাইপিং', 'ইংরেজি টাইপিং', 'টাইপিং টেস্ট', 'টাইপিং স্পিড',
-    'মুদ্রাক্ষরিক', 'কম্পিউটার মুদ্রাক্ষরিক', 'অফিস সহকারী', 'কম্পিউটার অপারেটর',
-    'চাকরির পরীক্ষা', 'সরকারি চাকরি', 'অনুশীলন',
-    'typing', 'typing test', 'typing speed', 'bangla typing', 'english typing',
-    'wpm', 'cpm', 'accuracy', 'govt job', 'practice',
-    icon: '⌨️',
-    newTab: true,
-    actionText: 'টাইপিং টেস্ট ওয়েবসাইটে যান ↗',
-    url: 'https://manik-rmch.github.io/typing-test/',
-    visibility: 'public'
-  },
   {
     id: 'age-calculator',
     name: 'বয়স ক্যালকুলেটর',
