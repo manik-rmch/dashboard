@@ -110,6 +110,7 @@ const TOOLS = [
     category: 'leave',
     keywords: 'ছুটি অর্জিত অনলাইন online earned leave',
     icon: '📖',
+    badge: '🔒 পাসওয়ার্ড সুরক্ষিত', 
     url: 'https://manik-rmch.github.io/earned-leave-online/',
     visibility: 'public'
   },
