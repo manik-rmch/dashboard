@@ -35,7 +35,8 @@ const CATEGORIES = [
   { id: 'leave',  label: 'ছুটি ও চাকরির হিসাব' },
   { id: 'date',   label: 'বয়স ও তারিখ' },
   { id: 'govt',   label: 'সরকারি সেবা' },
-  { id: 'skill',  label: 'দক্ষতা ও অনুশীলন' }
+  { id: 'skill',  label: 'দক্ষতা ও অনুশীলন' },
+  { id: 'coaching', label: 'কোচিং ব্যবস্থাপনা' }
 ];
 
 // টুলের তালিকা
@@ -154,6 +155,18 @@ const TOOLS = [
     newTab: true,
     actionText: 'সরকারি ওয়েবসাইটে যান ↗',
     url: 'https://secure.incometax.gov.bd/',
+    visibility: 'public'
+  },
+  {
+    id: 'salman-math-academy',
+    name: 'সালমান গণিত একাডেমি — ম্যানেজমেন্ট',
+    description: 'কোচিং সেন্টারের শিক্ষার্থী, মাসিক বেতন জমা, বকেয়া তালিকা, রশিদ ও রিপোর্ট ব্যবস্থাপনা। ইউজার আইডি-পাসওয়ার্ড বা ইমেইল-কোড দিয়ে লগইন করতে হয়।',
+    category: 'coaching',
+    keywords: 'কোচিং সালমান গণিত একাডেমি শিক্ষার্থী বেতন বকেয়া রশিদ রিপোর্ট ব্যবস্থাপনা coaching salman math academy student fee management receipt',
+    icon: '🏫',
+    newTab: true,
+    actionText: 'ম্যানেজমেন্ট সাইটে যান ↗',
+    url: 'https://manik-rmch.github.io/salman-math-academy/',
     visibility: 'public'
   }
 ];
