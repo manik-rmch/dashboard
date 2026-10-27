@@ -43,11 +43,12 @@ const TOOLS = [
   {
     id: 'typing-test',
     name: 'টাইপিং টেস্ট',
-    description: 'বাংলা ও ইংরেজি টাইপিংয়ের গতি ও নির্ভুলতা যাচাই করুন।',
+    description: 'সরকারি চাকরির কম্পিউটার মুদ্রাক্ষরিক পদের প্রস্তুতির জন্য বাংলা ও ইংরেজি টাইপিং অনুশীলন। গতি (WPM), Accuracy ও ভুল শব্দসহ ফলাফল দেখুন।',
     category: 'skill',
     keywords: 'টাইপিং টেস্ট টাইপ গতি স্পিড অনুশীলন typing test speed wpm practice',
     icon: '⌨️',
-    badge: '🆕 নতুন',
+    newTab: true,
+    actionText: 'টাইপিং টেস্ট ওয়েবসাইটে যান ↗',
     url: 'https://manik-rmch.github.io/typing-test/',
     visibility: 'public'
   },
