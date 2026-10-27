@@ -34,11 +34,23 @@ const CATEGORIES = [
   { id: 'salary', label: 'বেতন ও পে-স্কেল' },
   { id: 'leave',  label: 'ছুটি ও চাকরির হিসাব' },
   { id: 'date',   label: 'বয়স ও তারিখ' },
-  { id: 'govt',   label: 'সরকারি সেবা' }
+  { id: 'govt',   label: 'সরকারি সেবা' },
+  { id: 'skill',  label: 'দক্ষতা ও অনুশীলন' }
 ];
 
 // টুলের তালিকা
 const TOOLS = [
+  {
+    id: 'typing-test',
+    name: 'টাইপিং টেস্ট',
+    description: 'বাংলা ও ইংরেজি টাইপিংয়ের গতি ও নির্ভুলতা যাচাই করুন।',
+    category: 'skill',
+    keywords: 'টাইপিং টেস্ট টাইপ গতি স্পিড অনুশীলন typing test speed wpm practice',
+    icon: '⌨️',
+    badge: '🆕 নতুন',
+    url: 'https://manik-rmch.github.io/typing-test/',
+    visibility: 'public'
+  },
   {
     id: 'age-calculator',
     name: 'বয়স ক্যালকুলেটর',
@@ -49,7 +61,7 @@ const TOOLS = [
     url: 'https://manik-rmch.github.io/age-calculator/',
     visibility: 'public'
   },
-    {
+  {
     id: 'karjokal',
     name: 'কার্যকাল ও সময়কাল গণনাকারী',
     description: 'দুই তারিখের মধ্যে সরকারি নিয়মে (১ মাস = ৩০ দিন) কত বছর, মাস ও দিন হলো তা হিসাব করুন। প্রিন্টসহ।',
@@ -109,7 +121,7 @@ const TOOLS = [
     url: 'https://manik-rmch.github.io/rest-and-recreation-leave/',
     visibility: 'public'
   },
-    {
+  {
     id: 'pension',
     name: 'সরকারি পেনশন ক্যালকুলেটর',
     description: 'নতুন ও পুরাতন পেনশনারের মাসিক পেনশন, আনুতোষিক, ছুটি নগদায়ন ও ভাতার হিসাব করুন।',
