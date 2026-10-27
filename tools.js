@@ -49,6 +49,16 @@ const TOOLS = [
     url: 'https://manik-rmch.github.io/age-calculator/',
     visibility: 'public'
   },
+    {
+    id: 'karjokal',
+    name: 'কার্যকাল ও সময়কাল গণনাকারী',
+    description: 'দুই তারিখের মধ্যে সরকারি নিয়মে (১ মাস = ৩০ দিন) কত বছর, মাস ও দিন হলো তা হিসাব করুন। প্রিন্টসহ।',
+    category: 'date',
+    keywords: 'কার্যকাল সময়কাল চাকরিকাল চাকরির মেয়াদ সার্ভিস পিরিয়ড তারিখ ব্যবধান দিন মাস বছর গণনা ধার নিয়ম শুরুর দিনসহ service duration period length of service date difference calculator govt borrowing rule',
+    icon: '⏳',
+    url: 'https://manik-rmch.github.io/service-duration-calculator/',
+    visibility: 'public'
+  },
   {
     id: 'salary-8th',
     name: '৮ম পে-স্কেল স্যালারি ক্যালকুলেটর',
